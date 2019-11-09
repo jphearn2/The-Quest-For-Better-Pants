@@ -2,35 +2,39 @@ import React from "react"
 import ReactDOM from "react-dom"
 import KeyboardEvenHandler from "react-keyboard-event-handler"
 import { Engine } from "./engine/MainEngine"
+import { PlayerDisplay } from "./app/PlayerDisplay";
 
 interface IState {
     keyPressed: string;
-
+    engine: Engine;
 }
 
-class App extends React.Component <{}, IState> {
-    private engine: Engine = new Engine();
-    constructor(props: {}){
+class App extends React.Component<{}, IState> {
+    constructor(props: {}) {
         super(props);
-        this.state = { keyPressed: "" }
+
+        let e: Engine = new Engine();
+        this.state = { keyPressed: "", engine: e }
     }
 
-    render(){
-        this.engine.setKeyIn(this.state.keyPressed)
+    render() {
+        this.state.engine.setKeyIn(this.state.keyPressed)
 
-        return(
-            <div>
-                this is the game
+        return (
+            <>
+                <div>
+                    this is the game
                 <KeyboardEvenHandler
-                    handleKeys={['all']}
-                    onKeyEvent={(key, e) => {
-                        console.log(key);
-                        this.setState({ keyPressed: key })
-                    }}
-                />
-                <br/>
-                {this.engine.getState()}
-            </div>
+                        handleKeys={['all']}
+                        onKeyEvent={(key, e) => {
+                            this.setState({ keyPressed: key })
+                        }}
+                    />
+                    <br />
+                    {this.state.engine.getState()}
+                </div>
+                <PlayerDisplay player={this.state.engine.getPlayerState()} />
+            </>
         )
     }
 }

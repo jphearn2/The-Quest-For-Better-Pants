@@ -7,13 +7,11 @@ export class Engine{
         this.keyIn = "";
     }
 
-    setStorage(stringIn: string){
-        if(stringIn.length === 1)
-            this.keyIn = stringIn;
-
+    setKeyIn(stringIn: string){
+        this.keyIn = stringIn;
     }
 
-    getStorage(){
+    getState(){
         
         return this.keyIn;
     }

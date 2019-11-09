@@ -16,7 +16,7 @@ class App extends React.Component <{}, IState> {
     }
 
     render(){
-        this.engine.setStorage(this.state.keyPressed)
+        this.engine.setKeyIn(this.state.keyPressed)
 
         return(
             <div>
@@ -29,7 +29,7 @@ class App extends React.Component <{}, IState> {
                     }}
                 />
                 <br/>
-                {this.engine.getStorage()}
+                {this.engine.getState()}
             </div>
         )
     }

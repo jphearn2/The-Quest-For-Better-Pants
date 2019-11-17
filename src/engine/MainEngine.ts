@@ -1,18 +1,13 @@
 import { IPlayer } from "../Interfaces/IPlayer";
+import { Player } from "./Classes/Player";
 
 export class Engine{
     private keyIn: string;
-    private player: IPlayer;
+    private player: Player;
 
     constructor(){
         this.keyIn = "";
-        this.player = {
-            maxHP: 100,
-            hp: 100,
-            str: 5,
-            dex: 5,
-            intel: 5
-        }
+        this.player = new Player();
     }
 
     setKeyIn(stringIn: string){
@@ -25,6 +20,6 @@ export class Engine{
     }
 
     getPlayerState(): IPlayer{
-        return this.player;
+        return this.player.toIPlayer();
     }
 }
